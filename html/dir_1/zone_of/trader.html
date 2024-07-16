@@ -1,0 +1,45 @@
+<div class="dual_cont_model_2">
+    <div>
+        <ul class="trader_orders">
+            <a href="{% url 'core:add_trade_activity' user.pk user.username %}" class="btn-primary">إضافة نشاط تجاري</a>
+            <a href="{% url 'core:add_product_model' user.pk user.username %}" class="btn-primary">إضافة منتج</a>
+            <a href="{% url 'core:view_product_model' user.pk user.username %}" class="btn-primary">عرض منتجاتي</a>
+            <a href="{% url 'core:view_trade_activity' user.pk user.username %}" class="btn-primary">عرض الأنشطة التجارية</a>
+        </ul>
+    </div>
+    <div>
+
+
+        {% if trader_goods %}
+        <div class="div_4_parts">
+            {% for t in trader_goods %} {# 'owned_by','name','p_type','img_prod','des','discount_precent','amount','price_after_discount'#}
+            <ul class="part_model">
+
+                <img src="{{t.img_prod.url}}" class="img_model_item" width="64px" height="64px" alt="">
+                <h1>{{t.name}}</h1>
+                <li>السعر: {{t.price}} جنية </li>
+                <li>عدد الوحدات : {{t.amount}} وحدة</li>
+                <li>
+                    <b style="direction: ltr;">بعد الخصم: {{t.price_after_discount}}  جنية</b>
+                </li>
+                {% if user_profile.p_type == 'عميل' %}
+                <li>
+                    <a href="https://wa.me/201094128969?text=1 pice of {{t.name}}-{{t.img_prod.url}}-{{t.price_after_discount}}" class="btn-primary">شراء من  الواتس</a>
+                </li>
+
+                {% endif %}
+                <li>
+                    <a href="{% url 'core:view_item_product' user.pk user.username  t.pk %}" class="btn-primary">شراء مباشر</a>
+                </li>
+
+            </ul>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h1 style="width: 100%;text-align:center;">لاتوجد منتجات للتاجر</h1>
+        {% endif %}
+
+
+
+    </div>
+</div>

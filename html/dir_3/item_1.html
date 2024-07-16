@@ -1,0 +1,18 @@
+{% extends "home.html" %} {% load static %}
+<br>{% block tit%}إضافة منتج جديد{% endblock %}
+<br>{% block header%}
+<div class="dual_cont_model_1">
+    <div>
+        <img src="" id="show_prod_img" class="img_model_item" width="512px" height="512px" alt="">
+    </div>
+    <form action="" class="form_adj" enctype="multipart/form-data" method="post">
+        {% csrf_token %} {{form.as_div}}
+        <button class="btn_v1" type="submit">تأكيد</button>
+    </form>
+</div>
+
+{% endblock %}
+<br>{% block sec_1%} {% endblock %}
+<br>{% block sec_2%}{% endblock %}
+<br>{% block sec_3%}{% endblock %}
+<br>{% block sec_4%}{% endblock %}

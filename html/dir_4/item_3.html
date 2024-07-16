@@ -1,0 +1,42 @@
+{% extends "home.html" %} {% load static %}
+<br>{% block tit%}إضافة فرع جديد{% endblock %}
+<br>{% block header%} {% if items %}
+
+<table class="table" style="width: 100%;">
+    <theader>
+        <tr>
+            <th>id</th>
+            <th>الاسم</th>
+            <th>الشعار</th>
+            <th>العنوان</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+        </tr>
+    </theader>
+    <tbody>
+        'owned_by','company_name','img_logo'و'address','branch_locat' {% for i in items %}
+        <tr>
+            <td>{{i.pk}}</td>
+            <td>{{i.company_name}}</td>
+            <td><img src="{{i.img_logo.url}}" height="100px" width="100px" alt=""></td>
+            <td><a href="{{ i.branch_locat }}">{{ i.address }}</a></td>
+
+            <td>
+                <a href="{% url 'core:update_service_provider_model' user.pk user.username i.pk %}" class="btn_v2">تعديل</a>
+            </td>
+            <td>
+                <form action="" method="get">
+                    {% csrf_token %}
+                    <button type="submit" class="btn_v3">حذف نهائي</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% else %} {% endif %} {% endblock %}
+<br>{% block sec_1%} {% endblock %}
+<br>{% block sec_2%}{% endblock %}
+<br>{% block sec_3%}{% endblock %}
+<br>{% block sec_4%}{% endblock %}

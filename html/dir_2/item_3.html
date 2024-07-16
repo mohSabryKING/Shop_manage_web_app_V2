@@ -1,0 +1,23 @@
+{% extends "home.html" %} {% load static %}
+<br>{% block tit%}إضافة فرع جديد{% endblock %}
+<br>{% block header%} {% if items %} {% for i in items %}
+<div style="" class="topic_model">
+    <h1>{{i.t_name}}</h1>
+    <p>{{i.des}}</p>
+    <div style="display: flex;justify-items: center;justify-content: space-around;">
+
+        <a class="btn_v1" href="tel:+{{ user_x.user_phone }}">{{ user_x.user_phone }}</a>
+        <a href="{{i.branch_locat}}" class="btn_v1">{{i.address}}</a>
+    </div>
+
+
+</div>
+
+{% endfor %} {% else %}
+
+<h1 style="text-align: center;color:white;">لاتوجد انشطة تجارية لهذا التاجر</h1>
+{% endif %} {% endblock %}
+<br>{% block sec_1%} {% endblock %}
+<br>{% block sec_2%}{% endblock %}
+<br>{% block sec_3%}{% endblock %}
+<br>{% block sec_4%}{% endblock %}

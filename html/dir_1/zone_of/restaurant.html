@@ -1,0 +1,39 @@
+<div class="dual_cont_model_2">
+    <div>
+        <ul class="trader_orders">
+            <a href="{% url 'core:add_product_model' user.pk user.username %}" class="btn-primary">إضافة منتج</a>
+            <a href="{% url 'core:add_trade_activity' user.pk user.username %}" class="btn-primary">إضافة نشاط تجاري</a>
+            <a href="{% url 'core:add_restaurant_model' user.pk user.username %}" class="btn-primary">إضافة فرع</a>
+            <a href="{% url 'core:view_restaurant_model' user.pk user.username %}" class="btn-primary">عرض فروع المطاعم</a>
+            <a href="{% url 'core:view_product_model' user.pk user.username %}" class="btn-primary">عرض منتجاتي</a>
+            <a href="{% url 'core:view_trade_activity' user.pk user.username %}" class="btn-primary">عرض الأنشطة التجارية</a>
+
+        </ul>
+    </div>
+    <div>
+        <div class="div_4_parts" id="r_branchs"> {% for r in restaurants %} {# owned_by,r_name,branch_locat,user_phone #}
+            <ul class="part_model">
+                <h3>{{r.r_name}}</h3>
+                <img src="{{r.img_locat.url}}" width="128px" height="128px" alt="">
+                <a href="{{r.branch_locat}}" class="btn-primary" target="_blank">الموقع</a>
+                <small>{{r.address}}</small>
+            </ul>
+            {% endfor %}
+
+        </div>
+        <br>
+        <h1>منيو المطعم</h1>
+        <div class="div_4_parts" id="goods"> {% for t in trader_goods %} {# 'owned_by','name','p_type','img_prod','des','discount_precent','amount','price_after_discount'#}
+            <ul class="part_model">
+
+                <img src="{{t.img_prod.url}}" class="img_model" width="64px" height="64px" alt="">
+                <h1>{{t.name}}</h1>
+                <li style="display: flex;align-items: center;">{{t.amount}}:{{t.price}}:{{t.price_after_discount}}</li>
+
+            </ul>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="dual_cont_model_2">
+    <div>
+        <h1>client:{{user_profile.p_name}}</h1>
+    </div>
+
+    <div class="div_4_parts">
+        {% for t in traders %} {# ,p_name,p_type,img_user,img_bkg,user_phone #}
+        <ul class="part_model img_model" style="background-image: url({{t.img_bkg.url}});">
+
+            <img src="{{t.img_user.url}}" class="img_model" width="64px" height="64px" alt="">
+            <h1>{{t.p_name}}</h1>
+
+            <li>
+                <a href="https://wa.me/{{t.user_phone}}?text=1 " class="btn-primary">شراء من  الواتس</a>
+                <a href="{% url 'core:view_profile' user.pk user.username %}" class="btn-primary">تصفح المتجر الخاص</a>
+            </li>
+
+
+        </ul>
+        {% endfor %}
+
+    </div>
+</div>

@@ -1,0 +1,97 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/css1.css'%}">
+    <link rel="stylesheet" href="{% static 'css/css1.css'%}">
+    <link rel="stylesheet" href="{% static 'css/css1.css'%}">
+    <title>{% block tit %}الرئيسية{% endblock%}</title>
+</head>
+<header>
+    <div id="header_head">
+        <div>
+            <ul id="desk_menu">
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+            </ul>
+            <details id="phone_menu">
+                <summary>قائمة</summary>
+                <ul id="show_phone_menu">
+                    <li>item</li>
+                    <li>item</li>
+                    <li>item</li>
+                    <li>item</li>
+                    <li>item</li>
+                </ul>
+            </details>
+
+        </div>
+        <div id="brand_x">
+            <div>
+                <a href="{% url 'core:home' %}">
+                    <h1>متاجر اليوم</h1>
+                    <img src="" alt="" id="logo">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="header_body">
+        {% block header %}
+        <div id="intro_cont">
+            <h1>نموذج تسوق</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi repellendus culpa nulla facilis, deserunt ad optio ab neque explicabo perspiciatis libero, impedit facere ut laborum totam. Repudiandae possimus, sit fuga eaque ipsa in minima
+                aut nihil debitis at pariatur odit corporis maxime illo, iste blanditiis itaque cum iure sed sapiente?</p>
+            <div>
+                {% if user.is_authenticated %}
+                <form action="{% url 'core:logout' %}" method="Post" style="padding: 2%;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn_v1">
+                        تسجيل خروج
+                    </button>
+                </form>
+                {% else %}
+
+                <a href="{% url 'core:login' %}" class="btn_v1">تسجيل دخول</a> {% endif %} {% if user.is_authenticated %} {% if user.is_superuser or user.is_staff %}
+
+                <a href="{% url 'core:admin' %}" class="btn_v1">الأدارة</a> {% else %}
+                <a href="{% url 'core:view_profile' user.pk user.username %}" class="btn_v1">{{user.username}}</a> {% endif %} {% else %}
+
+                <a href="{% url 'core:add_user' %}" class="btn_v1">عمل حساب جديد</a> {% endif %}
+
+
+
+            </div>
+        </div>
+
+        {% endblock%}
+    </div>
+
+</header>
+
+<body>
+    <section class="sec_1">{% block sec_1 %}{% endblock%}</section>
+    <section class="sec_2">{% block sec_2 %}{% endblock%}</section>
+    <section class="sec_3">{% block sec_3 %}{% endblock%}</section>
+    <section class="sec_3">{% block sec_4 %}{% endblock%}</section>
+    <script src="{% static 'js/js1.js'%}"></script>
+    <script src="{% static 'js/js2.js'%}"></script>
+    <script src="{% static 'js/js3.js'%}"></script>
+    {% block js_sec %} {% endblock %}
+</body>
+<footer>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</footer>
+
+</html>

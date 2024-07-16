@@ -1,0 +1,39 @@
+<div class="dual_cont_model_2">
+    <div>
+        <ul class="trader_orders">
+            <a href="{% url 'core:add_service_provider_model' user.pk user.username %}" class="btn-primary"> إضافة بيانات شركة او فرع</a>
+            <a href="{% url 'core:add_service_model' user.pk user.username %}" class="btn-primary">إضافة خدمة</a>
+            <a href="{% url 'core:view_service_provider_model' user.pk user.username %}" class="btn-primary">عرض فروع </a>
+            <a href="{% url 'core:view_service_model' user.pk user.username %}" class="btn-primary">عرض الخدمات المتاحة</a>
+
+        </ul>
+    </div>
+    <div>
+        <div class="div_4_parts" id="r_branchs"> {% for r in companys_ser %} {# owned_by,r_name,branch_locat,user_phone #}
+            <ul class="part_model">
+                <h3>{{r.company_name}}</h3>
+                <img src="{{r.img_logo.url}}" width="128px" height="128px" alt="">
+                <a href="{{r.branch_locat}}" class="btn-primary" target="_blank">الموقع</a>
+                <small>{{r.address}}</small>
+            </ul>
+            {% endfor %}
+
+        </div>
+        <br>
+        <div class="div_4_parts" id="goods"> {% for t in services %} {# 'owned_by','name','p_type','img_prod','des','discount_precent','amount','price_after_discount'#}
+            <ul class="part_model">
+
+                <img src="{{t.img_serve.url}}" class="img_model" width="64px" height="64px" alt="">
+                <h1>{{t.name}}</h1>
+
+                <li>{{t.price}}السعر: Egp</li>
+                <li>{{t.price_after_discount}} السعر بعد الخصم:</li>
+
+
+            </ul>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>

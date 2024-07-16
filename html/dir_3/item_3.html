@@ -1,0 +1,50 @@
+{% extends "home.html" %} {% load static %}
+<br>{% block tit%}المنتجات{% endblock %}
+<br>{% block header%} {% if items %}
+
+<table class="table">
+    <theader>
+        <tr>
+            <th>id</th>
+            <th>الأسم</th>
+            <th>الشعار</th>
+            <th>الكمية</th>
+            <th>السعر بعد الخصم</th>
+            <th>حالة المنتج</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+        </tr>
+    </theader>
+    <tbody>
+        'owned_by','name','p_type','img_prod','des','discount_precent','amount','price_after_discount' {% for i in items %}
+        <tr>
+            <td>{{i.pk}}</td>
+            <td>{{i.name}}</td>
+            <td><img src="{{ i.img_prod.url }}" width="70px" height="70px" alt="{{i.name}}" /></td>
+            {% if i.amount %}
+            <td>{{i.amount}}</td>{% else %}
+            <td>لايوجد</td>{% endif %}
+            <td>{{i.price_after_discount}} Egp</td>
+            <td>
+
+                <h3>{{i.avil_func}}</h3>
+            </td>
+            <td>
+                <a href="{% url 'core:update_product_model' user.pk user.username i.pk %}" class="btn_v2">تعديل</a>
+            </td>
+            <td>
+                <a href="{% url 'core:remove_item_product' user.pk user.username i.pk %}" class="btn_v3">حذف</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% else %}
+
+<h1 class="topic_model">لاتوجد منتجات حاليا</h1>
+{% endif %} {% endblock %}
+<br>{% block sec_1%} {% endblock %}
+<br>{% block sec_2%}{% endblock %}
+<br>{% block sec_3%}{% endblock %}
+<br>{% block sec_4%}{% endblock %}

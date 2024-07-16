@@ -1,0 +1,63 @@
+{% extends "home.html" %} {% load static %}
+<br>{% block tit%}{{item_x.name}}{% endblock %}
+<br>{% block header%}
+
+
+
+<div class="dual_cont_model_1">
+
+    <div>
+        <img src="{{item_x.img_prod.url}}" width="512px" height="512px" alt="">
+    </div>
+    <div>
+        <ul class="trader_orders">
+            {# 'owned_by','name','p_type','img_prod','des','discount_precent','amount','price_after_discount'#}
+
+            <li>
+                <h4>{{item_x.name}}</h4>
+            </li>
+            <li><small>{{item_x.p_type}}</small></li>
+            <li>
+                عدد الوحدات:{{item_x.p_type}}
+            </li>
+            <li>
+                السعر بعد الخصم:{{item_x.price_after_discount}}
+
+            </li>
+            <li>
+                <p>{{item_x.des}}</p>
+            </li>
+            <div id="stripe-area"></div>
+            <div id="paypal-button-container"></div>
+            <p id="result-message"></p>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
+<br>{% block sec_1%} {% endblock %}
+<br>{% block sec_2%}{% endblock %}
+<br>{% block sec_3%}{% endblock %}
+<br>{% block sec_4%} {% endblock %}
+<br>{% block js_sec%}
+
+
+
+<!-- Initialize the JS-SDK -->
+
+
+<!-- Include the PayPal JavaScript SDK. Replace `YOUR_CLIENT_ID` with your client ID.-->
+<!-- Note that `enable-funding=venmo` is added as a query parameter -->
+<script src="https://www.paypal.com/sdk/js?client-id=AWnAXpTp3TpHPw9uxUTsciJk-qMTOCNInFU_NHSa2N2BL919VJ1KNkyAl3wfvWTA6mF_nAxhjLO33tyn&enable-funding=venmo"></script>
+
+<script>
+    // Render the Venmo button into #paypal-button-container
+    paypal.Buttons().render('#paypal-button-container')
+</script>
+
+
+
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/server.js' %}"></script>
+
+{% endblock %} {# api doc:https://developer.paypal.com/docs/api/orders/v2/#orders_create, client & server :https://developer.paypal.com/demo/checkout/#/pattern/server #}

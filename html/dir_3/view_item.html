@@ -1,0 +1,73 @@
+{% extends "home.html" %} {% load static %}
+<br>{% block tit%}{{item_x.name}}{% endblock %}
+<br>{% block header%}
+
+<style>
+    .trader_orders>li>* {
+        color: white;
+        text-align: center;
+    }
+    
+    .trader_orders>li {
+        color: white;
+        text-align: center;
+    }
+</style>
+
+<div class="dual_cont_model_1">
+
+    <div>
+        <img src="{{item_x.img_prod.url}}" width="512px" height="512px" alt="">
+    </div>
+    <div>
+        <ul class="trader_orders">
+            {# 'owned_by','name','p_type','img_prod','des','discount_precent','amount','price_after_discount'#}
+
+            <li>
+                <h4>{{item_x.name}}</h4>
+            </li>
+            <li><small>{{item_x.p_type}}</small></li>
+            <li>
+                عدد الوحدات:{{item_x.amount}}وحده
+            </li>
+            <li>
+                السعر بعد الخصم:{{item_x.price_after_discount}}جنية
+
+            </li>
+            <li>
+                <p>{{item_x.des}}</p>
+            </li>
+            <div id="stripe-area">
+                <form action="{% url 'core:win2' item_x.pk %}" method="post">
+                    {% csrf_token %}
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{key}}" data-amount="{{item_x.name}} Egp" data-description="{{item_x.price_after_discount}}" data-locale="auto"></script>
+
+                </form>
+
+            </div>
+
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
+<br>{% block sec_1%} {% endblock %}
+<br>{% block sec_2%}{% endblock %}
+<br>{% block sec_3%}{% endblock %}
+<br>{% block sec_4%} {% endblock %}
+<br>{% block js_sec%}
+
+
+<!-- Initialize the JS-SDK -->
+
+
+<!-- Include the PayPal JavaScript SDK. Replace `YOUR_CLIENT_ID` with your client ID.-->
+<!-- Note that `enable-funding=venmo` is added as a query parameter -->
+
+
+
+
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/server.js' %}"></script>
+
+{% endblock %} {# api doc:https://developer.paypal.com/docs/api/orders/v2/#orders_create, client & server :https://developer.paypal.com/demo/checkout/#/pattern/server #}

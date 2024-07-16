@@ -1,0 +1,26 @@
+{% extends "home.html" %} {% load static %}
+<br>{% block tit%}بناء صفحة المستخدم{% endblock %}
+<br>{% block header%}
+
+<div class="dual_cont_model_1">
+    <div class="img_model">
+        <img id="show_bkg" class="bkg_img" src="{%static 'img/bkg_2.png'%}">
+        <img src="{%static 'img/reg_user.png'%}" class="model_img" id="show_user_img" width="128px" height="128px" alt="">
+    </div>
+    <form action="" class="form_adj" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <h1>بناء صفحة المستخدم</h1>
+        {{form.as_div}}
+        <br>
+        <button class="btn_v1" type="submit">تأكيد</button>
+    </form>
+</div>
+
+{% endblock %}
+<br>{% block sec_1%}
+<script>
+</script>
+{% endblock %}
+<br>{% block sec_2%}{% endblock %}
+<br>{% block sec_3%}{% endblock %}
+<br>{% block sec_4%}{% endblock %}

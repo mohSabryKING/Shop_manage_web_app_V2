@@ -1,0 +1,31 @@
+{% extends "home.html" %} {% load i18n %}
+<br>{% block tit%}عرض الصفحة{% endblock %}
+<br>{% block header%}
+<div class="img_model" style="background-image: url({{user_profile.img_bkg.url}});">
+    <div>
+        <img src="{{user_profile.img_user.url}}" width="120px" height="120px" alt="">
+        <h3>{{user_profile.p_name}}</h3>
+        <small>{{user_profile.p_type}}</small>
+    </div>
+
+</div>
+
+{% endblock %}
+<br>{% block sec_1%}
+<div class="cont_model_2">
+
+    {# ('تاجر','تاجر'), ('عميل','عميل'), ('صاحب مطعم','صاحب مطعم'), ('موزع خدمات','موزع خدمات'), ('أخر','أخر'), #}
+    <br> {% if user_profile.p_type == 'تاجر' %} {% include 'dir_1/zone_of/trader.html' %}
+    <br>{% elif user_profile.p_type == 'صاحب مطعم' %} {% include "dir_1/zone_of/restaurant.html" %}
+    <br>{% elif user_profile.p_type == 'موزع خدمات' %} {% include "dir_1/zone_of/service_provider.html" %}
+    <br>{% else %} {% include "dir_1/zone_of/client.html" %}
+    <br> {% endif %}
+
+
+
+
+</div>
+{% endblock %}
+<br>{% block sec_2%}{% endblock %}
+<br>{% block sec_3%}{% endblock %}
+<br>{% block sec_4%}{% endblock %}
